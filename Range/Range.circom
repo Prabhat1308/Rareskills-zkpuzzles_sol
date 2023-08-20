@@ -10,7 +10,15 @@ pragma circom 2.1.4;
 
 template Range() {
     // your code here
-   
+    signal input a;
+    signal input lowerbound;
+    signal input upperbound;
+    
+    var x = a>=lowerbound ? 1:0;
+    var y = a<=upperbound ? 1:0;
+    signal tmp <-- x*y;
+    
+    signal output out <== tmp;
 }
 
 component main  = Range();

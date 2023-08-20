@@ -12,7 +12,19 @@ template QuadraticEquation() {
     signal input c;     // constant c in equation
     signal input res;   // Expected result of the equation
     signal output out;  // If res is correct , then return 1 , else 0 . 
+    
+    signal tmp1 <== x*x;   // x^2
+    signal tmp2 <== a*tmp1; // a*x^2
 
+    signal tmp3 <== b*x;  // b*x
+
+    signal tmp4 <== tmp2 + tmp3;  // a*x^2 + b*x
+    signal tmp5 <== tmp4 + c; // a*x^2 + b*x + c
+
+    component eq = IsEqual();
+    eq.in[1] <== tmp5;
+    eq.in[0] <== res;
+    out <== eq.out;
     // your code here
 }
 

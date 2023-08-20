@@ -7,7 +7,17 @@ pragma circom 2.1.4;
 template ForLoop() {
 
 // Your Code here..
+  signal input a[2];
+  signal output c;
 
+  var z = 0;
+  var sum = 0;
+  while(z<4){
+   sum += a[0] + a[1];
+    z++;
+  }
+
+    c <-- sum;
 }  
 
 component main = ForLoop();

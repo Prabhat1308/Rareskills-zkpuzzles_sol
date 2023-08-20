@@ -7,6 +7,10 @@ pragma circom 2.1.4;
 
 template Add() {
    // Your code here 
+   signal input a[2];
+   signal output c;
+
+   c<== a[1] + a[0];
    
 }
 

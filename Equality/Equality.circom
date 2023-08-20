@@ -6,7 +6,14 @@ pragma circom 2.1.4;
 template Equality() {
    // Your Code Here..
 
-   
+   signal input a[3];
+   signal output c;
+
+  var x = a[0]==a[1] ? 1 : 0;
+  var y = a[1]==a[2] ? 1 : 0;
+
+  c<--x*y;
+
 }
 
 component main = Equality();
