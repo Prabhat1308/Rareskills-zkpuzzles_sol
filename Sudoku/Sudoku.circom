@@ -74,7 +74,50 @@ template Sudoku () {
 
     // Write your solution from here.. Good Luck!
     
+     signal col[4];
+    signal row[4];
+
+    component coleq[4];
+    component roweq[4];
     
+    for(var q=0; q<4; q++){
+
+        var sum = 0;
+        
+        for(var w=0; w<4; w++){
+
+            sum += solution[q+4*w];
+
+        }
+
+        col[q] <== sum;
+        coleq[q] = IsEqual();
+        coleq[q].in[0] <== col[q];
+        coleq[q].in[1] <== 10;
+    }
+
+    for(var q=0; q<4; q++){
+
+        var sum = 0;
+        
+        for(var w=0; w<4; w++){
+
+            sum += solution[4*q+w];
+
+        }
+
+        row[q] <== sum;
+        roweq[q] = IsEqual();
+        roweq[q].in[0] <== row[q];
+        roweq[q].in[1] <== 10;
+    }
+
+    signal sum <== coleq[0].out + coleq[1].out + coleq[2].out + coleq[3].out + roweq[0].out + roweq[1].out + roweq[2].out + roweq[3].out;
+
+    component iseq = IsEqual();
+    iseq.in[0] <== sum;
+    iseq.in[1] <== 8;
+    out <== iseq.out;
    
 }
 
